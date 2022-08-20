@@ -1,0 +1,47 @@
+#input{
+   width: 70%;
+   height: 5vh; 
+   margin-left: 40px;
+}
+.btn{
+    margin-left: 20px;
+}
+.btn:hover{
+    background-color: white !important;
+    color: skyblue !important;
+}
+.name{
+    text-align: start;
+    /* background-color: ; */
+}
+.mn{
+    border: none;
+    width: 70px;
+    /* height: 4vh; */
+}
+.bg-white{
+    width: 50%;
+    margin-top: 360px;
+    /* height: 90vh; */
+}
+@media (max-width: 1300px ) {
+    #input{
+        width: 70%;
+        /* margin-left: 5px; */
+    }
+    .main{
+        width: 95%;
+        display: flex;
+        margin-left: 0;
+        justify-content: space-evenly;
+        /* height: 20vh; */
+    }
+    .bg-white{
+        width: 90%;
+        /* height: 100%; */
+
+    }
+    .btn{
+        width: 110px;
+    }
+}
