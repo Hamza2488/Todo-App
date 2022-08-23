@@ -1,62 +1,4 @@
-// var input = document.getElementById('input')
-// var main = document.getElementById('main')
-var parent = document.getElementById('displaylist')
 
-
-window.add = function () {
-    // var li = document.createElement('li')
-    // var litext = document.createTextNode(.value)
-    // li.appendChild(litext)
-    // li.className = 'hamza'
-    // litext.className = 'ja'
-    // parent.appendChild(li)
-    // input.value = ""
-
-    var button = document.createElement('button')
-    var text = document.createTextNode('Edit')
-    button.appendChild(text)
-    button.setAttribute("onclick", "edit(this)")
-    button.className = 'button1'
-    parent.appendChild(button)
-    input.value = ""
-
-    var button = document.createElement('button')
-    var text = document.createTextNode('Delete')
-    button.appendChild(text)
-    button.setAttribute("onclick", "deletea(this)")
-    button.className = 'button2'
-    parent.appendChild(button)
-    input.value = ""
-
-}
-
-// var list = []
-
-// function newdat() {
-//     var obj = {
-//         text: "user input value",
-//         Time: new Date().getHours()+":"+ new Date().getMonth()
-
-//     }
-// }
-// list.push(obj)
-
-
-window.edit = function (element) {
-    var val = prompt("Enter Task", element.parentNode.firstChild.nodeValue);
-    element.parentNode.firstChild.nodeValue = val
-    // console.log(val);
-
-}
-
-
-window.deletea = function (e) {
-    e.parentNode.remove();
-}
-
-window.DeleteAll = function (element) {
-    main.remove();
-}
 
 
 
@@ -70,7 +12,7 @@ window.DeleteAll = function (element) {
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-analytics.js";
-import { getDatabase, ref, push, onValue, set } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-database.js";
+import { getDatabase, ref, push, onValue, set, } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-database.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -93,39 +35,112 @@ const database = getDatabase();
 
 
 
+
 window.sendValue = function () {
-    var inp = document.getElementById('input');
-    console.log(inp.value);
+    var input = document.getElementById('input');
+    console.log(input.value);
 
     var id = Math.random().toString().slice(2);
 
 
     var obj = {
-        text: inp.value,
+        text: input.value,
         // id:id,
         time: new Date().getHours() +
             new Date().getMinutes() +
             new Date().getSeconds(),
             
     };
+    // console.log(obj);
 
     var reference = ref(database, 'task/' );
     var newRef = push(reference)
     set(newRef, obj);
 
 
-    inp.value = ""
+    input.value = ""
 };
+
+
+
+
+// var input = document.getElementById('input')
+var main = document.getElementById('main')
+
+// window.add = function(element) { 
+    // var li = document.createElement('li')
+    // var litext = document.createTextNode(input.value)
+    // li.appendChild(litext)
+    // li.className = 'hamza'
+    // litext.className = 'ja'
+    // main.appendChild(li)
+    // input.value = ""
+
+    // var button = document.createElement('button')
+    // var text = document.createTextNode('Edit')
+    // button.appendChild(text)
+    // button.setAttribute("onclick" , "edit(this)")
+    // button.className = 'button1'
+    // li.appendChild(button)
+    // input.value = ""
+
+    // var button = document.createElement('button')
+    // var text = document.createTextNode('Delete')
+    // button.appendChild(text)
+    // button.setAttribute("onclick" , "deletea(this)")
+    // button.className = 'button2'
+    // li.appendChild(button)
+    // input.value = ""
+
+//     sendValue();
+
+    
+// }
+
+
+// window.edit = function(element) {
+//     var val = prompt("Enter Task", element.parentNode.firstChild.nodeValue);
+//     element.parentNode.firstChild.nodeValue = val
+//     // console.log(val);
+
+// }
+
+
+// window.deletea = function(e) {
+//     e.parentNode.remove();
+// }
+
+// window. DeleteAll = function(element) {
+//     main.remove();
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var tasksData;
 
 function render() {
     var parent = document.getElementById('displaylist')
-    parent.innerHTML = "";
+    parent.innerHTML = ""; 
     for (var i = 0; i < tasksData.length; i++) {
         parent.innerHTML += ` <div class=" bg-light  text-primary name mx-5 my-2 rounded shadow"> <div class="d-flex justify-content-between"><div> <p class="mx-3">Task: ${tasksData[i].text}</p> </div>
        <div class="my-2 mx-3"> <button class="bg-primary rounded mn text-white" onclick="edit(this)">Edit</button>
-        <button class="bg-primary rounded mn text-white" onclick="deletea(this )">Delete</button> </div> </div>
+        <button class="bg-primary rounded mn text-white" onclick="delet(this )">Delete</button> </div> </div>
         <p class="mx-3"> Time:  ${tasksData[i].time}</p></div>`;
     }
 }
@@ -144,3 +159,14 @@ function getAlllist() {
 }
 
 getAlllist();
+
+
+window.delet = function (e) {
+    e.parent.remove()
+
+}
+
+
+
+
+
